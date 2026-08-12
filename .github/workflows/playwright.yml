@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Cross-Browser Tests
 
 on:
   push:
@@ -9,6 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
 
     steps:
       - name: Checkout repository
@@ -25,12 +28,12 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test --reporter=html
+      - name: Run Playwright tests on ${{ matrix.browser }}
+        run: npx playwright test --browser=${{ matrix.browser }} --reporter=html
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.browser }}
           path: playwright-report
