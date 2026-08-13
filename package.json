@@ -1,0 +1,19 @@
+{
+  "name": "parabank-tests",
+  "version": "1.0.0",
+  "description": "Playwright tests for ParaBank demo application",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test tests/ui",
+    "test:api": "playwright test tests/api",
+    "report": "playwright show-report"
+  },
+  "author": "Biljana Kostadinova Stojchevska",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.2"
+  }
+}

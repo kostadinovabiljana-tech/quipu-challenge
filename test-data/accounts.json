@@ -1,0 +1,10 @@
+{
+  "users": {
+    "Technical Challenge": { "username": "Challenge", "password": "password" }
+  },
+  "accounts": {
+    "primary": "16896",
+    "secondary": "16896",
+    "lowBalance": "11111"
+  }
+}
