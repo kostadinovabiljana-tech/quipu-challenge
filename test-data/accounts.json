@@ -1,10 +1,10 @@
 {
   "users": {
-    "Technical Challenge": { "username": "Challenge", "password": "password" }
+    "Technical Challenge": { "username": "john", "password": "demo" }
   },
   "accounts": {
-    "primary": "16896",
-    "secondary": "16896",
-    "lowBalance": "11111"
+    "primary": "54321",
+    "secondary": "12345",
+    "lowBalance": "12345"
   }
 }

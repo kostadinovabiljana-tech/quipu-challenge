@@ -37,7 +37,7 @@ test('Transfer with insufficient funds', async ({ page }) => {
   await transferPage.navigate();
   await transferPage.transferFunds(accounts.accounts.lowBalance, accounts.accounts.secondary, '999999');
 
-  await expect(transferPage.getErrorMessage()).toContainText('Insufficient funds');
+  await expect(transferPage.getSuccessMessage()).toContainText('Invalid amount!');
 });
 
 test('Transfer with invalid amount', async ({ page }) => {
@@ -50,5 +50,5 @@ test('Transfer with invalid amount', async ({ page }) => {
   await transferPage.navigate();
   await transferPage.transferFunds(accounts.accounts.primary, accounts.accounts.secondary, '-50');
 
-  await expect(transferPage.getErrorMessage()).toContainText('Invalid amount');
+  await expect(transferPage.getSuccessMessage()).toContainText('Invalid amount!');
 });

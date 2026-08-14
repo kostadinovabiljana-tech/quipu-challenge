@@ -2,8 +2,8 @@ import { Page } from '@playwright/test';
 
 class LoginPage {
   readonly page: Page;
-  readonly usernameInput = '#username';
-  readonly passwordInput = '#password';
+  readonly usernameInput = 'input[name="username"]';
+  readonly passwordInput = 'input[name="password"]';
   readonly loginButton = 'input[value="Log In"]';
 
   constructor(page: Page) {

@@ -6,8 +6,8 @@ class TransferFundsPage {
   readonly toAccountSelect = '#toAccountId';
   readonly amountInput = '#amount';
   readonly transferButton = 'input[value="Transfer"]';
-  readonly successMessage = '.title';
-  readonly errorMessage = '.error';
+  readonly successMessage = 'h1.title';
+  readonly errorMessage = 'p.error';
 
   constructor(page: Page) {
     this.page = page;
@@ -18,6 +18,11 @@ class TransferFundsPage {
   }
 
   async transferFunds(fromAccount: string, toAccount: string, amount: string) {
+    await this.page.waitForFunction(() => {
+      const fromSelect = document.querySelector('#fromAccountId');
+      const toSelect = document.querySelector('#toAccountId');
+      return !!fromSelect && !!toSelect && fromSelect.options.length > 0 && toSelect.options.length > 0;
+    });
     await this.page.selectOption(this.fromAccountSelect, fromAccount);
     await this.page.selectOption(this.toAccountSelect, toAccount);
     await this.page.fill(this.amountInput, amount);
@@ -25,11 +30,11 @@ class TransferFundsPage {
   }
 
   getSuccessMessage() {
-    return this.page.locator(this.successMessage);
+    return this.page.locator(this.successMessage).filter({ hasText: 'Transfer Complete!' });
   }
 
   getErrorMessage() {
-    return this.page.locator(this.errorMessage);
+    return this.page.locator(this.errorMessage).filter({ hasText: /Invalid amount|Insufficient funds|Please enter a valid amount|The amount cannot be empty/ });
   }
 }
 
